@@ -1,0 +1,51 @@
+//- global media vars
+
+$def: 320px;
+
+$xs: 23.5em; // 376px @media (max-width: $xs) {}
+
+$sm: 36em; // (min-width: 576px)
+$md: 48em; // (min-width: 768px)
+$lg: 62em; // (min-width: 992px)
+$gl: 64em; //! gap `lg - xl` (min-width: 1024px)
+$xl: 75em; // (min-width: 1200px)
+
+//- to container
+
+$col-sm: 540px; // (max-width: 540px)
+$col-md: 720px; // (max-width: 720px)
+$col-lg: 960px; // (max-width: 960px)
+$col-xl: 1197px; // (max-width: 1197px)
+
+$breakpoints: (
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+);
+
+// colors
+$white: #fff;
+$gray-800: #141416;
+$gray-700: #23262F;
+$gray-600: #353945;
+$gray-500: #777E90;
+$gray-400: #B1B5C3;
+$gray-300: #E6E8EC;
+$gray-200: #F4F5F6;
+$gray-100: #FCFCFD;
+$primary-yellow: #FFC737;
+$secondary-yellow: #FFD166;
+$primary-blue: #3772FF;
+$secondary-blue: #4BC9F0;
+$primary-pink: #9757D7;
+$secondary-pink: #CDB4DB;
+$sand: #E4D7CF;
+$primary-orange: #FF6838;
+$primary-green: #58BD7D;
+
+// fonts
+$roboto-font: "Roboto", sans-serif;
+$poppins-font: "Poppins", sans-serif;
+$gilroy-bold-font: "Gilroy Bold", sans-serif;
+$transition: 0.3s;

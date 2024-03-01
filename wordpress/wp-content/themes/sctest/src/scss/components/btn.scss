@@ -1,0 +1,28 @@
+.btn {
+    padding: 12px 16px;
+    line-height: 16px;
+    border-radius: 90px;
+    background-color: $primary-yellow;
+    color: $gray-800;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background-color $transition;
+    font-family: $gilroy-bold-font;
+
+    &:hover {
+        background-color: darken($primary-yellow, 25%);
+    }
+
+    &--dark {
+        border-color: $gray-500;
+        color: $gray-100;
+        background-color: transparent;
+        transition: background-color $transition, color $transition, border-color $transition;
+
+        &:hover {
+            background-color: $white;
+            color: $gray-700;
+            border-color: $white;
+        }
+    }
+}

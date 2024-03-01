@@ -1,0 +1,33 @@
+h1, h2 {
+    font-family: $gilroy-bold-font;
+}
+
+h1 {
+    font-size: 25px;
+    line-height: 1;
+    margin-bottom: 25px;
+
+    @include mq(xl) {
+        font-size: 40px;
+        line-height: 48px;
+    }
+}
+
+h2 {
+    font-size: 25px;
+    line-height: 1;
+    margin-bottom: 24px;
+
+    @include mq(xl) {
+        font-size: 36px;
+    }
+}
+
+h3 {
+    font-size: 20px;
+    margin: 0 0 20px;
+
+    @include mq(xl) {
+        font-size: 24px;
+    }
+}

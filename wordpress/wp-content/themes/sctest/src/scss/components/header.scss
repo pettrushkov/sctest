@@ -1,0 +1,49 @@
+.header {
+    padding: 10px 15px;
+    border-bottom: 1px solid $gray-700;
+    display: flex;
+    justify-content: space-between;
+
+    @include mq(xl) {
+        padding: 24px;
+    }
+
+    &-logo {
+        max-width: 148px;
+
+        img {
+            max-width: 100%;
+        }
+
+        @include mq(xl){
+            max-width: 222px;
+        }
+    }
+
+    & > div {
+        display: flex;
+
+        @include mq(xl) {
+            width: 33.33%;
+            justify-content: center;
+        }
+
+        &:first-child {
+            display: none;
+
+            @include mq(xl) {
+                display: block;
+            }
+        }
+
+        &:last-child {
+            //buttons
+            justify-content: flex-end;
+            gap: 10px;
+
+            @include mq(xl) {
+                gap: 15px;
+            }
+        }
+    }
+}

@@ -1,0 +1,96 @@
+.benefits {
+    padding: 50px 0;
+
+    @include mq(xl){
+        padding: 125px 0 0;
+    }
+
+    &-title {
+        margin-top: 0;
+        margin-bottom: 35px;
+        color: $gray-200;
+        text-align: center;
+
+        @include mq(xl) {
+            margin-bottom: 75px;
+        }
+    }
+
+    &-row {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        @include mq(lg) {
+            flex-direction: row;
+            gap: 82px;
+            justify-content: space-between;
+        }
+    }
+
+    &-col {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+
+        @include mq(lg) {
+            display: block;
+            text-align: center;
+            max-width: 345px;
+        }
+
+        &-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $primary-yellow;
+
+            @include mq(lg) {
+                width: 65px;
+                height: 65px;
+                margin: 0 auto 25px;
+            }
+
+            img {
+                width: 25px;
+                height: 25px;
+                object-fit: contain;
+
+                @include mq(lg) {
+                    width: 35px;
+                    height: 35px;
+                }
+            }
+        }
+
+        &-text-wrapper {
+            width: calc(100% - 70px);
+
+            @include mq(lg) {
+                width: 100%;
+            }
+        }
+
+        &-title {
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 16px;
+            color: $gray-400;
+
+            @include mq(lg) {
+                max-width: 250px;
+                margin: 0 auto 25px;
+                -webkit-line-clamp: 2;
+                min-height: 48px; // double line
+            }
+        }
+
+        &-text {
+            margin: 0;
+            color: $gray-500;
+        }
+    }
+}
