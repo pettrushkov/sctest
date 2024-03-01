@@ -5,9 +5,112 @@
 /*!***********************!*\
   !*** ./src/js/app.js ***!
   \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal */ "./src/js/modal.js");
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modal__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _custom_login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom-login */ "./src/js/custom-login.js");
+/* harmony import */ var _custom_login__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_custom_login__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+/***/ }),
+
+/***/ "./src/js/custom-login.js":
+/*!********************************!*\
+  !*** ./src/js/custom-login.js ***!
+  \********************************/
 /***/ (() => {
 
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
 
+  customLogin();
+});
+var customLogin = function customLogin() {
+  var forms = document.querySelectorAll('.modal-form');
+  if (forms.length) {
+    forms.forEach(function (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var data = new FormData(form);
+        var answer = form.querySelector('.modal-server-answer');
+        data.append('action', 'custom_login');
+        fetch(globalVars.ajaxUrl, {
+          method: "POST",
+          credentials: 'same-origin',
+          body: data
+        }).then(function (response) {
+          return response.json();
+        }).then(function (data) {
+          if (data) {
+            answer.innerText = data.message;
+            if (data.loggedin === true) {
+              setTimeout(function () {
+                window.location.replace(globalVars.redirectUrl);
+              }, 3000);
+            }
+          }
+        })["catch"](function (error) {
+          console.error(error);
+        });
+      });
+    });
+  }
+};
+
+/***/ }),
+
+/***/ "./src/js/modal.js":
+/*!*************************!*\
+  !*** ./src/js/modal.js ***!
+  \*************************/
+/***/ (() => {
+
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+
+  closeModal();
+  showLoginModal();
+  togglePassword();
+});
+var togglePassword = function togglePassword() {
+  var btns = document.querySelectorAll('.password-field .show-toggle');
+  if (btns.length) {
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btn.classList.toggle('show-toggle--showed');
+        var prevEl = btn.previousElementSibling;
+        if (prevEl.getAttribute('type') === 'password') {
+          prevEl.setAttribute('type', 'text');
+        } else {
+          prevEl.setAttribute('type', 'password');
+        }
+      });
+    });
+  }
+};
+var showLoginModal = function showLoginModal() {
+  var btn = document.querySelector('.btn-show-login');
+  var modal = document.querySelector('.login-modal-js');
+  if (btn && modal) {
+    btn.addEventListener('click', function () {
+      modal.classList.remove('hide');
+    });
+  }
+};
+var closeModal = function closeModal() {
+  var closeBtns = document.querySelectorAll('.modal-close');
+  if (closeBtns.length) {
+    closeBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btn.parentElement.parentElement.classList.add('hide');
+      });
+    });
+  }
+};
 
 /***/ }),
 
@@ -83,6 +186,30 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	

@@ -8,6 +8,7 @@
     cursor: pointer;
     transition: background-color $transition;
     font-family: $gilroy-bold-font;
+    text-decoration: none;
 
     &:hover {
         background-color: darken($primary-yellow, 25%);

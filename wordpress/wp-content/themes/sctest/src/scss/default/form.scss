@@ -1,0 +1,55 @@
+form {
+
+    .field-wrapper:not(:last-child) {
+        margin-bottom: 10px;
+    }
+
+    input:not(.btn) {
+        padding: 16px;
+        display: block;
+        width: 100%;
+        border-radius: 70px;
+        transition: color $transition, border-color $transition;
+        border: 2px solid $gray-600;
+        outline: none;
+        color: $gray-300;
+        background-color: transparent;
+
+        &:hover{
+            border-color: $gray-500;
+        }
+
+        &:focus{
+            border-color: $primary-yellow;
+        }
+
+        &::placeholder{
+            color: $gray-500;
+        }
+    }
+
+    input[type="submit"] {
+        margin: 0 auto;
+    }
+
+    .submit-field-wrapper{
+        text-align: center;
+    }
+
+    .password-field {
+        position: relative;
+
+        .show-toggle {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url(../img/eye-icon.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+    }
+}

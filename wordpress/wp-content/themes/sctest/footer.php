@@ -1,7 +1,13 @@
-<div class="footer">
-	<div class="container">
-		<?php wp_footer(); ?>
+<?php
+wp_footer();
+global $template_uri;
+?>
 
-		</body>
+<?php
+if (!is_user_logged_in()) {
+    get_template_part('inc/template-parts/login', 'modal');
+}
+?>
 
-		</html>
+</body>
+</html>
