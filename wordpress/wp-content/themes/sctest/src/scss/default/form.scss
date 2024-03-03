@@ -1,7 +1,57 @@
 form {
 
-    .field-wrapper:not(:last-child) {
+    .field-wrapper {
         margin-bottom: 10px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        &.valid {
+
+            .field-validation-status-ok {
+                display: block;
+            }
+
+            input {
+                border-color: $primary-green;
+            }
+        }
+
+        &.invalid {
+
+            input {
+                border-color: $primary-orange;
+                color: $primary-orange;
+            }
+        }
+
+        &:not(.valid,.invalid) input {
+
+            &:hover {
+                border-color: $gray-500;
+            }
+
+            &:focus {
+                border-color: $primary-yellow;
+            }
+        }
+
+        .field-validation-status-ok {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 16px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url(../img/check-green-icon.svg);
+            display: none;
+        }
+
+        .field-validation-message {
+            order: 1;
+        }
     }
 
     input:not(.btn) {
@@ -15,24 +65,17 @@ form {
         color: $gray-300;
         background-color: transparent;
 
-        &:hover{
-            border-color: $gray-500;
-        }
-
-        &:focus{
-            border-color: $primary-yellow;
-        }
-
-        &::placeholder{
+        &::placeholder {
             color: $gray-500;
         }
     }
 
     input[type="submit"] {
         margin: 0 auto;
+        border: none;
     }
 
-    .submit-field-wrapper{
+    .submit-field-wrapper {
         text-align: center;
     }
 
@@ -44,8 +87,7 @@ form {
             width: 24px;
             height: 24px;
             right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 12px;
             background-image: url(../img/eye-icon.svg);
             background-repeat: no-repeat;
             background-position: center;

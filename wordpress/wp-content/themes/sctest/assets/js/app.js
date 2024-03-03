@@ -13,7 +13,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modal__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _custom_login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom-login */ "./src/js/custom-login.js");
 /* harmony import */ var _custom_login__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_custom_login__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
+/* harmony import */ var _custom_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./custom-register */ "./src/js/custom-register.js");
+/* harmony import */ var _custom_register__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_custom_register__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
+
 
 
 
@@ -60,6 +63,82 @@ var customLogin = function customLogin() {
         });
       });
     });
+  }
+};
+
+/***/ }),
+
+/***/ "./src/js/custom-register.js":
+/*!***********************************!*\
+  !*** ./src/js/custom-register.js ***!
+  \***********************************/
+/***/ (() => {
+
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+
+  validation();
+});
+var validation = function validation() {
+  var passwordFields = document.querySelectorAll('.register-modal-js input.password');
+  var inputs = document.querySelectorAll('.register-modal-js input');
+  if (inputs.length) {
+    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    var charAndSymbol = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9\s]).*$/;
+    inputs.forEach(function (input) {
+      input.addEventListener('change', function () {
+        var inputType = input.getAttribute('type');
+        var inputValue = input.value;
+
+        // email validation
+        if (inputType === 'email') {
+          validInput(inputValue.match(emailRegex), input);
+        }
+
+        // name validation
+        if (inputType === 'text' && !input.classList.contains('password')) {
+          validInput(inputValue !== '', input);
+        }
+
+        // password validation
+        if (input.classList.contains('password')) {
+          validInput(inputValue !== '', input);
+
+          // any character or symbol
+          validInput(inputValue.match(charAndSymbol), input);
+          var secondPasswordMessage = passwordFields[1].parentElement.querySelector('.field-validation-message');
+
+          // is passwords not equal
+          if (passwordFields[0].value !== passwordFields[1].value &&
+          // and not empty
+          passwordFields[0].value !== '' && passwordFields[1].value !== '') {
+            secondPasswordMessage.innerText = 'Паролі не співпадають';
+
+            // show invalid for two password fields
+            passwordFields.forEach(function (input) {
+              validInput(false, input);
+            });
+          } else {
+            // hide error
+            secondPasswordMessage.innerText = '';
+            if (passwordFields[0].value !== '' && passwordFields[1].value !== '') {
+              passwordFields.forEach(function (input) {
+                validInput(true, input);
+              });
+            }
+          }
+        }
+      });
+    });
+  }
+};
+var validInput = function validInput(condition, input) {
+  if (condition) {
+    input.parentElement.classList.add('valid');
+    input.parentElement.classList.remove('invalid');
+  } else {
+    input.parentElement.classList.add('invalid');
+    input.parentElement.classList.remove('valid');
   }
 };
 

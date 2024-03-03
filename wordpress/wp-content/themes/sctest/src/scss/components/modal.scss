@@ -254,6 +254,11 @@
             &-row {
                 display: flex;
                 align-items: center;
+                margin-bottom: 10px;
+
+                .field-wrapper {
+                    margin-bottom: 0;
+                }
             }
 
             &-type {
@@ -274,7 +279,7 @@
                 }
             }
 
-            input {
+            .field-wrapper {
                 flex: 1;
             }
         }

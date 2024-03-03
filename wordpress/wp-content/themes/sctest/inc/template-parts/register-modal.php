@@ -1,4 +1,7 @@
-<?php global $template_uri; ?>
+<?php
+global $template_uri;
+$field_validation_path = 'inc/template-parts/field-validation';
+?>
 
 <div class="modal-wrapper register-modal-js ">
     <div class="modal">
@@ -50,20 +53,24 @@
             </h2>
             <form action="#" class="modal-form">
                 <div class="field-wrapper">
+                    <?php get_template_part($field_validation_path); ?>
                     <input type="text" name="name" placeholder="Ваше імʼя" required>
                 </div>
                 <div class="field-wrapper">
+                    <?php get_template_part($field_validation_path); ?>
                     <input type="email" name="email" placeholder="Ваш email" required>
                 </div>
                 <div class="field-wrapper password-field">
-                    <input type="password" name="password" placeholder="Ваш пароль" required>
+                    <?php get_template_part($field_validation_path, '', array('type'=>'password')); ?>
+                    <input type="password" name="password" placeholder="Ваш пароль" class="password" required>
                     <span class="show-toggle"></span>
                 </div>
                 <div class="field-wrapper password-field">
-                    <input type="password" name="password-repeat" placeholder="Повторіть пароль" required>
+                    <?php get_template_part($field_validation_path, '', array('type'=>'password')); ?>
+                    <input type="password" name="password-repeat" placeholder="Повторіть пароль" class="password" required>
                     <span class="show-toggle"></span>
                 </div>
-                <div class="modal-additional-contact field-wrapper">
+                <div class="modal-additional-contact">
                     <h3 class="modal-additional-contact-title">Оберіть спосіб звязку</h3>
                     <div class="modal-additional-contact-row">
                         <button class="modal-additional-contact-type active" type="button"
@@ -73,7 +80,9 @@
                         <button class="modal-additional-contact-type" type="button" data-source="скайп">
                             <img src="<?php echo $template_uri; ?>/assets/img/skype-icon.svg" alt="скайп">
                         </button>
-                        <input type="text" placeholder="@телеграм_адреса" name="additional-contact" required>
+                        <div class="field-wrapper">
+                            <input type="text" placeholder="@телеграм_адреса" name="additional-contact" required>
+                        </div>
                     </div>
                 </div>
                 <div class="field-wrapper submit-field-wrapper">

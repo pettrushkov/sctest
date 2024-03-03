@@ -542,8 +542,42 @@ h3 {
   }
 }
 
-form .field-wrapper:not(:last-child) {
+form .field-wrapper {
   margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+form .field-wrapper.valid .field-validation-status-ok {
+  display: block;
+}
+form .field-wrapper.valid input {
+  border-color: #58BD7D;
+}
+form .field-wrapper.invalid input {
+  border-color: #FF6838;
+  color: #FF6838;
+}
+form .field-wrapper:not(.valid, .invalid) input:hover {
+  border-color: #777E90;
+}
+form .field-wrapper:not(.valid, .invalid) input:focus {
+  border-color: #FFC737;
+}
+form .field-wrapper .field-validation-status-ok {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../img/check-green-icon.svg);
+  display: none;
+}
+form .field-wrapper .field-validation-message {
+  order: 1;
 }
 form input:not(.btn) {
   padding: 16px;
@@ -556,12 +590,6 @@ form input:not(.btn) {
   color: #E6E8EC;
   background-color: transparent;
 }
-form input:not(.btn):hover {
-  border-color: #777E90;
-}
-form input:not(.btn):focus {
-  border-color: #FFC737;
-}
 form input:not(.btn)::-moz-placeholder {
   color: #777E90;
 }
@@ -570,6 +598,7 @@ form input:not(.btn)::placeholder {
 }
 form input[type=submit] {
   margin: 0 auto;
+  border: none;
 }
 form .submit-field-wrapper {
   text-align: center;
@@ -582,8 +611,7 @@ form .password-field .show-toggle {
   width: 24px;
   height: 24px;
   right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 12px;
   background-image: url(../img/eye-icon.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -1053,6 +1081,10 @@ form .password-field .show-toggle {
 .modal-wrapper .modal-additional-contact-row {
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
+}
+.modal-wrapper .modal-additional-contact-row .field-wrapper {
+  margin-bottom: 0;
 }
 .modal-wrapper .modal-additional-contact-type {
   width: 45px;
@@ -1070,7 +1102,7 @@ form .password-field .show-toggle {
 .modal-wrapper .modal-additional-contact-type.active {
   background-color: #353945;
 }
-.modal-wrapper .modal-additional-contact input {
+.modal-wrapper .modal-additional-contact .field-wrapper {
   flex: 1;
 }
 
