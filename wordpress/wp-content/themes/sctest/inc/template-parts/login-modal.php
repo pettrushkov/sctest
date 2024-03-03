@@ -11,12 +11,16 @@
                 Вхід
             </h2>
             <form action="#" class="modal-form">
-                <div class="field-wrapper"><input type="email" name="email" placeholder="Ваш email"></div>
+                <div class="field-wrapper">
+                    <input type= "email" name="email" placeholder="Ваш email" required>
+                </div>
                 <div class="field-wrapper password-field">
-                    <input type="password" name="password" placeholder="Ваш пароль">
+                    <input type="password" name="password" placeholder="Ваш пароль" required>
                     <span class="show-toggle"></span>
                 </div>
-                <div class="field-wrapper submit-field-wrapper"><input type="submit" class="btn" value="Війти"></div>
+                <div class="field-wrapper submit-field-wrapper">
+                    <input type="submit" class="btn" value="Війти">
+                </div>
                 <?php wp_nonce_field('ajax-login-nonce', 'security'); ?>
                 <div class="modal-server-answer"></div>
             </form>

@@ -7,7 +7,8 @@
     border: 2px solid transparent;
     cursor: pointer;
     transition: background-color $transition;
-    font-family: $gilroy-bold-font;
+    font-family: $gilroy-font;
+    font-weight: 700;
     text-decoration: none;
 
     &:hover {

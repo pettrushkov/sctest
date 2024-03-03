@@ -10,6 +10,10 @@
     flex-direction: column;
     justify-content: flex-end;
 
+    @include mq(lg) {
+        justify-content: center;
+    }
+
     &.hide {
         display: none;
     }
@@ -21,13 +25,32 @@
         }
     }
 
+    &.register-modal-js .modal {
+
+        @include mq(lg) {
+            max-width: 770px;
+            display: flex;
+        }
+
+        &-slider, &-inner {
+            width: 50%;
+        }
+    }
+
     .modal {
         width: calc(100% - 20px);
         margin: 10px;
         background-color: $gray-700;
         border-radius: 25px;
+        overflow: hidden;
         position: relative;
-        padding: 25px 30px;
+
+        &-inner {
+            padding: 25px 30px 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
         &-close {
             border: none;
@@ -42,12 +65,31 @@
             position: absolute;
             top: 10px;
             right: 10px;
+            transition: background-color $transition;
+
+            &:hover {
+                background-color: lighten($gray-600, 10%);
+            }
         }
 
         &-title {
-            margin-bottom: 25px;
+            margin: 0 0 25px;
             display: flex;
             align-items: center;
+
+            &--multiline {
+
+                @include mq(lg) {
+                    flex-direction: column;
+                }
+
+                .modal-title-icon {
+
+                    @include mq(lg) {
+                        margin: 0 0 10px;
+                    }
+                }
+            }
 
             &-icon {
                 width: 45px;
@@ -63,11 +105,178 @@
                     width: 25px;
                     height: 25px;
                 }
+
+                &--green {
+                    background-color: $primary-green;
+                }
             }
         }
 
         &-server-answer {
             text-align: center;
+        }
+
+        &-slider {
+            display: none;
+            background-color: $primary-green;
+            position: relative;
+            padding: 65px 53px 111px;
+
+            @include mq(lg) {
+                display: block;
+            }
+
+            &::before, &::after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+
+            &::before {
+                background-position: center top;
+                background-image: url(../img/modal-slider-top-bg.svg);
+            }
+
+            &::after {
+                background-position: center bottom;
+                background-image: url(../img/modal-slider-bottom-bg.svg);
+            }
+
+            &-inner {
+                position: relative;
+                z-index: 1;
+            }
+
+            &-title {
+                margin: 0 0 65px;
+                font-family: $gilroy-font;
+                font-weight: 400;
+                line-height: 40px;
+                max-width: 260px;
+            }
+
+            .features-list {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+
+                li {
+                    padding: 12px 0 12px 70px;
+                    position: relative;
+
+                    &::before {
+                        content: '';
+                        width: 45px;
+                        height: 45px;
+                        border-radius: 50%;
+                        background-color: rgba($white, .2);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-image: url(../img/check-icon.svg);
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        left: 0;
+                    }
+
+                    h3 {
+                        font-size: 14px;
+                        line-height: 17px;
+                        font-family: $gilroy-font;
+                        margin: 0;
+                    }
+                }
+            }
+
+            .swiper-controls {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 62px;
+
+                .swiper-button-prev, .swiper-button-next {
+                    width: 16px;
+                    height: 16px;
+                    background-color: transparent;
+                    border: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 5px;
+                    cursor: pointer;
+                }
+
+                .swiper-button-next {
+                    transform: scale(-1, 1);
+                }
+
+                .slider-carousel-pagination {
+                    position: static;
+                    width: initial;
+
+                    .swiper-pagination-bullet {
+                        margin: 0 5px;
+                        background-color: $gray-300;
+
+                        &.swiper-pagination-bullet-active {
+                            background-color: $secondary-yellow;
+                        }
+                    }
+                }
+            }
+        }
+
+        &-additional-contact {
+            text-align: center;
+
+            &.field-wrapper {
+                margin-bottom: 25px;
+            }
+
+            &-title {
+                margin: 25px 0 10px;
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 1;
+                text-transform: uppercase;
+                color: $gray-400;
+            }
+
+            &-row {
+                display: flex;
+                align-items: center;
+            }
+
+            &-type {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                transition: background-color $transition;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                margin-right: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &.active {
+                    background-color: $gray-600;
+                }
+            }
+
+            input {
+                flex: 1;
+            }
         }
     }
 }

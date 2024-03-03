@@ -4,7 +4,30 @@ document.addEventListener("DOMContentLoaded", () => {
     closeModal();
     showLoginModal();
     togglePassword();
+    changeType();
 });
+
+// Change a type of additional contact in register form
+const changeType = () => {
+    const btns = document.querySelectorAll('.modal-additional-contact-type');
+
+    if (btns.length) {
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (!btn.classList.contains('active')) {
+                    // remove active class
+                    const activeBtn = document.querySelector('.modal-additional-contact-type.active');
+                    activeBtn.classList.remove('active');
+
+                    btn.classList.add('active');
+                    // change additional contact input placeholder
+                    const input = btn.parentElement.querySelector('input');
+                    input.placeholder = `@${btn.getAttribute('data-source')}_адреса`;
+                }
+            });
+        });
+    }
+}
 
 const togglePassword = () => {
     const btns = document.querySelectorAll('.password-field .show-toggle');
