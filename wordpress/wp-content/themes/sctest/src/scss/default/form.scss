@@ -6,6 +6,10 @@ form {
         display: flex;
         flex-direction: column;
 
+        &.password-field {
+            margin-bottom: 5px;
+        }
+
         &.valid {
 
             .field-validation-status-ok {
@@ -51,6 +55,12 @@ form {
 
         .field-validation-message {
             order: 1;
+            font-size: 10px;
+            line-height: 12px;
+            padding-left: 16px;
+            font-family: $poppins-font;
+            color: $primary-orange;
+            margin-top: 5px;
         }
     }
 

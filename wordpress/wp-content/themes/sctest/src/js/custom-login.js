@@ -5,39 +5,38 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const customLogin = () => {
-    const forms = document.querySelectorAll('.modal-form');
+    const form = document.querySelector('.login-modal-js .modal-form');
 
-    if (forms.length) {
-        forms.forEach(form => {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-                const data = new FormData(form);
-                const answer = form.querySelector('.modal-server-answer');
+            const data = new FormData(form);
+            const answer = form.querySelector('.modal-server-answer');
 
-                data.append('action', 'custom_login');
+            data.append('action', 'custom_login');
 
-                fetch(globalVars.ajaxUrl, {
-                    method: "POST",
-                    credentials: 'same-origin',
-                    body: data
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        if (data) {
-                            answer.innerText = data.message;
+            fetch(globalVars.ajaxUrl, {
+                method: "POST",
+                credentials: 'same-origin',
+                body: data
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data) {
+                        answer.innerText = data.message;
 
-                            if (data.loggedin === true) {
-                                setTimeout(() => {
-                                    window.location.replace(globalVars.redirectUrl);
-                                }, 3000)
-                            }
+                        if (data.loggedin === true) {
+                            setTimeout(() => {
+                                window.location.replace(globalVars.redirectUrl);
+                            }, 3000)
                         }
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
-            });
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                    alert('Помилка! Деталі в консолі розробника');
+                });
         });
     }
 }

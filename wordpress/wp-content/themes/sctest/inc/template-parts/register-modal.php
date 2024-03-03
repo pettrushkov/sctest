@@ -3,7 +3,7 @@ global $template_uri;
 $field_validation_path = 'inc/template-parts/field-validation';
 ?>
 
-<div class="modal-wrapper register-modal-js ">
+<div class="modal-wrapper register-modal-js hide">
     <div class="modal">
         <button class="modal-close" type="button"></button>
         <div class="modal-slider">
@@ -89,6 +89,7 @@ $field_validation_path = 'inc/template-parts/field-validation';
                     <input type="submit" class="btn" value="Реєстрація">
                 </div>
                 <?php wp_nonce_field('ajax-register-nonce', 'register-security'); ?>
+                <input type="hidden" name="additional-contact-type" value="телеграм">
                 <div class="modal-server-answer"></div>
             </form>
         </div>

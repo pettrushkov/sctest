@@ -2,7 +2,45 @@ document.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
     validation();
+    customRegister();
 });
+
+const customRegister = () => {
+    const form = document.querySelector('.register-modal-js .modal-form');
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const data = new FormData(form);
+            const answer = form.querySelector('.modal-server-answer');
+
+            data.append('action', 'custom_register');
+
+            fetch(globalVars.ajaxUrl, {
+                method: "POST",
+                credentials: 'same-origin',
+                body: data
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data) {
+                        answer.innerText = data.message;
+
+                        if (data.registered === true) {
+                            setTimeout(() => {
+                                window.location.replace(globalVars.redirectUrl);
+                            }, 3000)
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                    alert('Помилка! Деталі в консолі розробника');
+                });
+        });
+    }
+}
 
 const validation = () => {
     const passwordFields = document.querySelectorAll('.register-modal-js input.password');

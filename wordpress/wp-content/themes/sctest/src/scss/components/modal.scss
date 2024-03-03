@@ -33,7 +33,10 @@
         }
 
         &-slider, &-inner {
-            width: 50%;
+
+            @include mq(lg) {
+                width: 50%;
+            }
         }
     }
 

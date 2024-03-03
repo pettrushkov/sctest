@@ -19,6 +19,6 @@ function custom_login()
             echo json_encode(array('loggedin' => true, 'message' => __('Вхід виконано. Через 3 секунди ви перенаправитесь на головну сторінку')));
         }
 
-        die();
+        wp_die();
     }
 }

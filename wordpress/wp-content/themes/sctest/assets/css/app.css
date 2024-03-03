@@ -456,6 +456,42 @@ body {
   line-height: 24px;
   font-size: 14px;
   font-family: "Roboto", sans-serif;
+  position: relative;
+}
+body::before, body::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+}
+body::before {
+  background-image: url(../img/body-background-left-mobile.svg);
+  background-position: left 34vh;
+}
+@media (min-width: 62em) {
+  body::before {
+    background-image: url(../img/body-background-left.svg);
+    background-position: left bottom;
+  }
+}
+body::after {
+  background-image: url(../img/body-background-right-mobile.svg);
+  background-position: right 1vh;
+}
+@media (min-width: 62em) {
+  body::after {
+    background-image: url(../img/body-background-right.svg);
+    background-position: right 1vh;
+    opacity: 0.4;
+  }
+}
+body .wrapper {
+  position: relative;
+  z-index: 1;
 }
 
 * {
@@ -548,6 +584,9 @@ form .field-wrapper {
   display: flex;
   flex-direction: column;
 }
+form .field-wrapper.password-field {
+  margin-bottom: 5px;
+}
 form .field-wrapper.valid .field-validation-status-ok {
   display: block;
 }
@@ -578,6 +617,12 @@ form .field-wrapper .field-validation-status-ok {
 }
 form .field-wrapper .field-validation-message {
   order: 1;
+  font-size: 10px;
+  line-height: 12px;
+  padding-left: 16px;
+  font-family: "Poppins", sans-serif;
+  color: #FF6838;
+  margin-top: 5px;
 }
 form input:not(.btn) {
   padding: 16px;
@@ -890,8 +935,10 @@ form .password-field .show-toggle {
     display: flex;
   }
 }
-.modal-wrapper.register-modal-js .modal-slider, .modal-wrapper.register-modal-js .modal-inner {
-  width: 50%;
+@media (min-width: 62em) {
+  .modal-wrapper.register-modal-js .modal-slider, .modal-wrapper.register-modal-js .modal-inner {
+    width: 50%;
+  }
 }
 .modal-wrapper .modal {
   width: calc(100% - 20px);

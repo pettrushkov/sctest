@@ -33,7 +33,7 @@ $favicon_uri = $template_uri . '/favicon/';
 </head>
 
 <body>
-
+<div class="wrapper">
 <header class="header">
     <div></div>
     <div class="header-logo">
@@ -42,7 +42,7 @@ $favicon_uri = $template_uri . '/favicon/';
     <div>
         <?php if (!is_user_logged_in()) { ?>
             <button class="btn btn--dark btn-show-login" type="button">Вхід</button>
-            <button class="btn" type="button">Реєстрація</button>
+            <button class="btn btn-show-register" type="button">Реєстрація</button>
         <?php } else { ?>
             <a href="<?php echo wp_logout_url(home_url()); ?>" class="btn btn--dark">Вийти</a>
         <?php } ?>

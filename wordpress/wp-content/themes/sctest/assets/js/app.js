@@ -35,32 +35,31 @@ document.addEventListener("DOMContentLoaded", function () {
   customLogin();
 });
 var customLogin = function customLogin() {
-  var forms = document.querySelectorAll('.modal-form');
-  if (forms.length) {
-    forms.forEach(function (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var data = new FormData(form);
-        var answer = form.querySelector('.modal-server-answer');
-        data.append('action', 'custom_login');
-        fetch(globalVars.ajaxUrl, {
-          method: "POST",
-          credentials: 'same-origin',
-          body: data
-        }).then(function (response) {
-          return response.json();
-        }).then(function (data) {
-          if (data) {
-            answer.innerText = data.message;
-            if (data.loggedin === true) {
-              setTimeout(function () {
-                window.location.replace(globalVars.redirectUrl);
-              }, 3000);
-            }
+  var form = document.querySelector('.login-modal-js .modal-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      var answer = form.querySelector('.modal-server-answer');
+      data.append('action', 'custom_login');
+      fetch(globalVars.ajaxUrl, {
+        method: "POST",
+        credentials: 'same-origin',
+        body: data
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        if (data) {
+          answer.innerText = data.message;
+          if (data.loggedin === true) {
+            setTimeout(function () {
+              window.location.replace(globalVars.redirectUrl);
+            }, 3000);
           }
-        })["catch"](function (error) {
-          console.error(error);
-        });
+        }
+      })["catch"](function (error) {
+        console.error(error);
+        alert('Помилка! Деталі в консолі розробника');
       });
     });
   }
@@ -78,7 +77,38 @@ document.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
   validation();
+  customRegister();
 });
+var customRegister = function customRegister() {
+  var form = document.querySelector('.register-modal-js .modal-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      var answer = form.querySelector('.modal-server-answer');
+      data.append('action', 'custom_register');
+      fetch(globalVars.ajaxUrl, {
+        method: "POST",
+        credentials: 'same-origin',
+        body: data
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        if (data) {
+          answer.innerText = data.message;
+          if (data.registered === true) {
+            setTimeout(function () {
+              window.location.replace(globalVars.redirectUrl);
+            }, 3000);
+          }
+        }
+      })["catch"](function (error) {
+        console.error(error);
+        alert('Помилка! Деталі в консолі розробника');
+      });
+    });
+  }
+};
 var validation = function validation() {
   var passwordFields = document.querySelectorAll('.register-modal-js input.password');
   var inputs = document.querySelectorAll('.register-modal-js input');
@@ -155,6 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   closeModal();
   showLoginModal();
+  showRegisterModal();
   togglePassword();
   changeType();
 });
@@ -162,6 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Change a type of additional contact in register form
 var changeType = function changeType() {
   var btns = document.querySelectorAll('.modal-additional-contact-type');
+  var inputTypeField = document.querySelector('input[name="additional-contact-type"]');
   if (btns.length) {
     btns.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -172,7 +204,9 @@ var changeType = function changeType() {
           btn.classList.add('active');
           // change additional contact input placeholder
           var input = btn.parentElement.querySelector('input');
-          input.placeholder = "@".concat(btn.getAttribute('data-source'), "_\u0430\u0434\u0440\u0435\u0441\u0430");
+          var type = btn.getAttribute('data-source');
+          input.placeholder = "@".concat(type, "_\u0430\u0434\u0440\u0435\u0441\u0430");
+          inputTypeField.value = type;
         }
       });
     });
@@ -191,6 +225,15 @@ var togglePassword = function togglePassword() {
           prevEl.setAttribute('type', 'password');
         }
       });
+    });
+  }
+};
+var showRegisterModal = function showRegisterModal() {
+  var btn = document.querySelector('.btn-show-register');
+  var modal = document.querySelector('.register-modal-js');
+  if (btn && modal) {
+    btn.addEventListener('click', function () {
+      modal.classList.remove('hide');
     });
   }
 };
@@ -236,19 +279,33 @@ document.addEventListener("DOMContentLoaded", function () {
 var slider = function slider() {
   var slider = document.querySelector(".slider-carousel");
   if (slider) {
-    var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](slider, {
-      modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation],
-      spaceBetween: 35,
-      loop: true,
-      pagination: {
-        el: slider.querySelector(".slider-carousel-pagination"),
-        clickable: true
-      },
-      navigation: {
-        nextEl: slider.querySelector(".swiper-button-next"),
-        prevEl: slider.querySelector(".swiper-button-prev")
+    var swiperCard = function swiperCard() {
+      if (window.innerWidth > 991) {
+        if (!init) {
+          init = true;
+          swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](slider, {
+            modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation],
+            spaceBetween: 35,
+            loop: true,
+            pagination: {
+              el: slider.querySelector(".slider-carousel-pagination"),
+              clickable: true
+            },
+            navigation: {
+              nextEl: slider.querySelector(".swiper-button-next"),
+              prevEl: slider.querySelector(".swiper-button-prev")
+            }
+          });
+        }
+      } else if (init) {
+        swiper.destroy();
+        init = false;
       }
-    });
+    };
+    var init = false;
+    var swiper;
+    swiperCard();
+    window.addEventListener("resize", swiperCard);
   }
 };
 

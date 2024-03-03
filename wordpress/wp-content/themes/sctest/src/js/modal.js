@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     closeModal();
     showLoginModal();
+    showRegisterModal();
     togglePassword();
     changeType();
 });
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Change a type of additional contact in register form
 const changeType = () => {
     const btns = document.querySelectorAll('.modal-additional-contact-type');
+    const inputTypeField = document.querySelector('input[name="additional-contact-type"]');
 
     if (btns.length) {
         btns.forEach(btn => {
@@ -22,7 +24,10 @@ const changeType = () => {
                     btn.classList.add('active');
                     // change additional contact input placeholder
                     const input = btn.parentElement.querySelector('input');
-                    input.placeholder = `@${btn.getAttribute('data-source')}_адреса`;
+                    const type = btn.getAttribute('data-source');
+                    input.placeholder = `@${type}_адреса`;
+
+                    inputTypeField.value = type;
                 }
             });
         });
@@ -45,6 +50,17 @@ const togglePassword = () => {
                     prevEl.setAttribute('type', 'password');
                 }
             });
+        });
+    }
+}
+
+const showRegisterModal = () => {
+    const btn = document.querySelector('.btn-show-register');
+    const modal = document.querySelector('.register-modal-js');
+
+    if (btn && modal) {
+        btn.addEventListener('click', () => {
+            modal.classList.remove('hide');
         });
     }
 }
