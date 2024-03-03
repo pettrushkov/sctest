@@ -1,17 +1,55 @@
 body,
 html {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  background-color: $gray-800;
-  color: $white;
-  line-height: 24px;
-  font-size: 14px;
-  font-family: $roboto-font;
+    background-color: $gray-800;
+    color: $white;
+    line-height: 24px;
+    font-size: 14px;
+    font-family: $roboto-font;
+    position: relative;
+
+    &::before, &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-repeat: no-repeat;
+    }
+
+    &::before {
+        background-image: url(../img/body-background-left-mobile.svg);
+        background-position: left 34vh;
+
+        @include mq(lg) {
+            background-image: url(../img/body-background-left.svg);
+            background-position: left bottom;
+        }
+    }
+
+    &::after {
+        background-image: url(../img/body-background-right-mobile.svg);
+        background-position: right 1vh;
+
+        @include mq(lg) {
+            background-image: url(../img/body-background-right.svg);
+            background-position: right 1vh;
+            opacity: 0.4;
+        }
+    }
+
+    .wrapper {
+        position: relative;
+        z-index: 1;
+    }
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
