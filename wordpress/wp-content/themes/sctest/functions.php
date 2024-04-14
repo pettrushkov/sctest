@@ -49,3 +49,6 @@ function sctest_enqueue_styles()
     ));
 }
 
+
+
+add_theme_support( 'align-wide' );

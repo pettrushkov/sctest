@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "subscription-block/subscription-block",
+  "version": "0.1.0",
+  "title": "Subscription-block",
+  "category": "text",
+  "icon": "smiley",
+  "description": "Example block scaffolded with Create Block tool.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "align": [
+      "wide"
+    ],
+    "color": {
+      "text": false,
+      "background": true,
+      "gradients": true
+    },
+    "anchor": true
+  },
+  "textdomain": "subscription-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "selector": "h2",
+      "default": "BTC PRICE",
+      "source": "text"
+    },
+    "btn": {
+      "type": "string",
+      "selector": "button",
+      "default": "FETCH NOW",
+      "source": "text"
+    },
+    "list_id": {
+      "type": "string"
+    },
+    "doubleoptin": {
+      "type": "boolean"
+    },
+    "image": {
+      "type": "object",
+      "default": {
+        "id": 0
+      }
+    }
+  }
+}
